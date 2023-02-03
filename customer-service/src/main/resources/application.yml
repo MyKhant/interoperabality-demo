@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: customer-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/address_db
+    username: root
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
