@@ -1,5 +1,6 @@
 package com.example.webui.controller;
 
+import com.example.webui.ds.Addresses;
 import com.example.webui.ds.Customer;
 import com.example.webui.ds.Customers;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +24,20 @@ public class CustomerController {
     }
 
     private RestTemplate template = new RestTemplate();
+
+    @GetMapping("/address-list")
+    public String listAddresses(Model model){
+        ResponseEntity<Addresses> response =
+                template.getForEntity(url+"address/all", Addresses.class);
+        if (response.getStatusCode().is2xxSuccessful()){
+            model.addAttribute("addresses",
+                    response.getBody().getAddresses());
+        }
+        else {
+            throw new RuntimeException("Not Found!");
+        }
+        return "index";
+    }
 
     // http://localhost:8080/customer/all
 
