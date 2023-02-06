@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css"
+    th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+ <div class="container mt-5">
+     <a th:href="@{/webui/customer-list}" class="btn btn-primary btn-lg">Customers</a>
+     <hr class="my-3">
+     <div class="card" th:if="${customers!=null}">
+         <div class="card-header">
+             <h3>Customers</h3>
+         </div>
+         <div class="card-body">
+             <table class="table table-striped">
+                 <thead>
+                 <tr>
+                     <th>Id</th>
+                     <th>FirstName</th>
+                     <th>LastName</th>
+                     <th>Code</th>
+                     <th>Email</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <tr th:each="cus : ${customers}">
+                     <td th:text="${cus.id}"></td>
+                     <td th:text="${cus.firstName}"></td>
+                     <td th:text="${cus.lastName}"></td>
+                     <td th:text="${cus.code}"></td>
+                     <td th:text="${cus.email}"></td>
+                 </tr>
+                 </tbody>
+             </table>
+         </div>
+     </div>
+ </div>
+</body>
+</html>
